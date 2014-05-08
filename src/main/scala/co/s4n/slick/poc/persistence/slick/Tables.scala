@@ -1,4 +1,4 @@
-package co.s4n.slick.poc.persistence
+package co.s4n.slick.poc.persistence.slick
 import scala.slick.driver.PostgresDriver.simple._
 
 object Tables {
