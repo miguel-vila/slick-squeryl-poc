@@ -11,11 +11,12 @@ class WriterActor extends Actor {
   import context.dispatcher
   
   def receive = {
-    case SuppliersUpdateStreetByNameRequest(name: String, street: String)  =>
+    case TimedMessage(SuppliersUpdateStreetByNameRequest(name: String, street: String), startTime)  =>
+//      println("writer actor recived update")
      val originalSender = sender
      Future { 
        supplierDAO.updateStreetByName(name, street)
-       originalSender ! UpdateCompleted
+       originalSender ! UpdateCompleted(startTime)
      }
   }
 }

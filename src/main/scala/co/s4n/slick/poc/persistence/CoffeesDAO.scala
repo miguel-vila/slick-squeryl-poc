@@ -7,9 +7,9 @@ import co.s4n.slick.poc.persistence.Tables.Coffees
 
 class CoffeesDAO(database: DatabaseDef, coffees: TableQuery[Coffees]) extends DAO(database) {
   
-  val queryByName = for {
+  val querySalesByName = for {
     name <- Parameters[String]
-    u <- coffees if u.name is name
-  } yield u.sales
+    c <- coffees if c.name is name
+  } yield c.sales
   
 }

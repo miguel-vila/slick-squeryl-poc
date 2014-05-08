@@ -1,14 +1,10 @@
 package co.s4n.slick.poc.persistence
 
-import slick.driver.PostgresDriver.simple._
+import scala.slick.driver.PostgresDriver.simple._
 import slick.driver.PostgresDriver.backend.{ Session , DatabaseDef }
 
 abstract class DAO(protected val database: DatabaseDef) {
-  
-  def withSession[S](f: Session => S) : S = {
-    database.withSession(f)
-  }
-  
+
 }
 
 object DAO {
@@ -17,7 +13,5 @@ object DAO {
   
   val coffeesDao = new CoffeesDAO(defaultDB, coffees)
   val suppliersDao = new SuppliersDAO(defaultDB, suppliers)
-  
-  coffeesDao.queryByName("").extract
   
 }

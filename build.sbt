@@ -24,5 +24,6 @@ libraryDependencies ++= Seq(
     "com.typesafe.akka"     %% "akka-actor"       % akkaVersion,
     "com.typesafe.akka"     %% "akka-slf4j"           % akkaVersion,
     "com.typesafe.akka"     %% "akka-testkit"         % akkaVersion,
-    "com.typesafe.slick" %% "slick" % "2.0.1"
+    "com.typesafe.slick" %% "slick" % "2.0.1",
+    "postgresql" % "postgresql" % "9.1-901.jdbc4"
 )
