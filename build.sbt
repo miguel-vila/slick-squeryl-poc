@@ -12,6 +12,8 @@ scalacOptions ++= Seq( "-deprecation", "-unchecked", "-feature" )
  
 lazy val akkaVersion = "2.2.3"
 lazy val sprayVersion = "1.2-RC4"
+
+val postgresDriver = "org.postgresql" % "postgresql" % "9.3-1101-jdbc41"
  
 resolvers ++= Seq(
     "Sonatype Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",   
@@ -25,5 +27,6 @@ libraryDependencies ++= Seq(
     "com.typesafe.akka"     %% "akka-slf4j"           % akkaVersion,
     "com.typesafe.akka"     %% "akka-testkit"         % akkaVersion,
     "com.typesafe.slick" %% "slick" % "2.0.1",
-    "postgresql" % "postgresql" % "9.1-901.jdbc4"
+    "postgresql" % "postgresql" % "9.1-901.jdbc4",
+    "org.squeryl" %% "squeryl" % "0.9.5-6", postgresDriver
 )

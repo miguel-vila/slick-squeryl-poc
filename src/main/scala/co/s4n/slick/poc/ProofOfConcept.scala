@@ -3,9 +3,10 @@ package co.s4n.slick.poc
 import scala.concurrent.ExecutionContext
 import akka.actor.Actor
 import co.s4n.slick.poc.flow.Messages._
-import co.s4n.slick.poc.flow.WriterActor
+import co.s4n.slick.poc.flow.SlickWriterActor
 import akka.actor.Props
 import akka.actor.ActorSystem
+import akka.actor.ActorRef
 
 object ProofOfConcept extends App{
 
@@ -14,7 +15,8 @@ object ProofOfConcept extends App{
   implicit lazy val system = ActorSystem( "slick-poc" )
   implicit lazy val ex: ExecutionContext = system.dispatcher
   
-  val rootActor = system.actorOf( RootActor.props() , "writerActor")
+  val slickWriterActor = system.actorOf( SlickWriterActor.props() , "slickWriterActor")
+  val rootActor = system.actorOf( RootActor.props(slickWriterActor) , "rootActor")
   
   println("ProofOfConcept started!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   
@@ -24,9 +26,7 @@ object ProofOfConcept extends App{
   
 }
 
-class RootActor extends Actor {
-  
-  val writerActor = context.actorOf( WriterActor.props() , "writerActor")
+class RootActor(writerActor: ActorRef) extends Actor {
   
   var maxDuration = Long.MinValue
   
@@ -54,5 +54,5 @@ class RootActor extends Actor {
 }
 
 object RootActor {
-  def props(): Props = Props[RootActor]
+  def props(writerActor: ActorRef): Props = Props(classOf[RootActor], writerActor)
 }

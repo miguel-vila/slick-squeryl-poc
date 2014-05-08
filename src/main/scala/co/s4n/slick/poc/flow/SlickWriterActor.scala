@@ -5,7 +5,7 @@ import co.s4n.slick.poc.flow.Messages._
 import co.s4n.slick.poc.persistence.DAO
 import scala.concurrent.Future
 
-class WriterActor extends Actor {
+class SlickWriterActor extends Actor {
 
   val supplierDAO = DAO.suppliersDao
   import context.dispatcher
@@ -21,6 +21,6 @@ class WriterActor extends Actor {
   }
 }
 
-object WriterActor {
-  def props(): Props = Props[ WriterActor ]
+object SlickWriterActor {
+  def props(): Props = Props[ SlickWriterActor ]
 }
