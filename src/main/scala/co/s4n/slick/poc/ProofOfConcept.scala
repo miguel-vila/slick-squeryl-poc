@@ -7,6 +7,7 @@ import co.s4n.slick.poc.flow.SlickWriterActor
 import akka.actor.Props
 import akka.actor.ActorSystem
 import akka.actor.ActorRef
+import co.s4n.slick.poc.flow.SquerylWriterActor
 
 object ProofOfConcept extends App{
 
@@ -16,7 +17,11 @@ object ProofOfConcept extends App{
   implicit lazy val ex: ExecutionContext = system.dispatcher
   
   val slickWriterActor = system.actorOf( SlickWriterActor.props() , "slickWriterActor")
-  val rootActor = system.actorOf( RootActor.props(slickWriterActor) , "rootActor")
+  val squerylWriterActor = system.actorOf( SquerylWriterActor.props() , "squerylWriterActor")
+  
+  val writerActor = squerylWriterActor
+  
+  val rootActor = system.actorOf( RootActor.props(squerylWriterActor) , "rootActor")
   
   println("ProofOfConcept started!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   
