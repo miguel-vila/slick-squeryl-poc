@@ -20,9 +20,16 @@ class SuppliersDAO {
   val suppliers = Tables.suppliers
   
   def updateStreetByName(name: String, street: String) = {
-    inTransaction { 
+    transaction { 
       update(suppliers) {
-        s => where(s.name === name) set(s.street := street)
+        s => 
+          if(street == "carrera 1"){
+        	  println("ME DORMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII <<ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
+            Thread.sleep(10000)
+          }
+          val ret = where(s.name === name) set(s.street := street)
+          println("transaction for " +street +"-")
+          ret
       }
     }
   }

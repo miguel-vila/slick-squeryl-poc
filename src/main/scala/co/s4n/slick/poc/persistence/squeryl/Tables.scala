@@ -4,6 +4,7 @@ import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.Schema
 import org.squeryl.KeyedEntity
 import org.squeryl.annotations.Column
+import org.squeryl.Optimistic
 
 case class Supplier(
     @Column("SUP_ID")

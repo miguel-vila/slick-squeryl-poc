@@ -22,7 +22,6 @@ class SquerylWriterActor extends Actor {
        try {
     	   supplierDAO.updateStreetByName(name, street)
     	   originalSender ! UpdateCompleted(startTime)         
-    	   println("retried :"+staleExceptions)   
        } catch {
          case staleExc : StaleUpdateException =>
            staleExceptions = staleExceptions + 1

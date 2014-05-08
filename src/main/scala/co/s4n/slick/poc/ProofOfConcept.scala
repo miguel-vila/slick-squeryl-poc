@@ -21,7 +21,7 @@ object ProofOfConcept extends App{
   
   val writerActor = squerylWriterActor
   
-  val rootActor = system.actorOf( RootActor.props(squerylWriterActor) , "rootActor")
+  val rootActor = system.actorOf( RootActor.props(slickWriterActor) , "rootActor")
   
   println("ProofOfConcept started!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   

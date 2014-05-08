@@ -2,11 +2,12 @@ package co.s4n.slick.poc.persistence.squeryl
 
 import org.squeryl.KeyedEntity
 import org.squeryl.annotations.Column
+import org.squeryl.Optimistic
 
-trait Optimistic {
+trait SuppliersOptimistic extends Optimistic {
   self: KeyedEntity[_] =>
     
     @Column("version")
-    protected val occVersionNumber = 0
+    override val occVersionNumber = 0
 
 }
