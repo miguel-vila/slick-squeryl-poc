@@ -2,15 +2,21 @@ package co.s4n.slick.poc.persistence.slick
 
 import scala.slick.driver.PostgresDriver.simple._
 import slick.driver.PostgresDriver.backend.{ Session , DatabaseDef }
+import java.util.Properties
 
-abstract class DAO(protected val database: DatabaseDef)
+abstract class DAO() {
+  import co.s4n.slick.poc.constants.persistence._
+  
+  val props = new Properties
+    props.setProperty("autoCommit", "false")
+  protected val defaultDB = Database.forURL(url, driver = driver, user=user, prop=props, password=password)
+  
+}
 
 object DAO {
-  import co.s4n.slick.poc.constants.persistence._
   import co.s4n.slick.poc.persistence.slick.Tables._
-  private val defaultDB = Database.forURL(url, driver = driver, user=user, password=password)
   
-  val coffeesDao = new CoffeesDAO(defaultDB, coffees)
-  val suppliersDao = new SuppliersDAO(defaultDB, suppliers)
+  val coffeesDao = new CoffeesDAO(coffees)
+  val suppliersDao = new SuppliersDAO(suppliers)
   
 }

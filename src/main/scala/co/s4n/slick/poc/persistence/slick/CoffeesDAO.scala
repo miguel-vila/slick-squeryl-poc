@@ -5,7 +5,7 @@ import slick.driver.PostgresDriver.backend.{ Session , DatabaseDef }
 import scala.slick.lifted.TableQuery
 import co.s4n.slick.poc.persistence.slick.Tables.Coffees
 
-class CoffeesDAO(database: DatabaseDef, coffees: TableQuery[Coffees]) extends DAO(database) {
+class CoffeesDAO(coffees: TableQuery[Coffees]) extends DAO() {
   
   val querySalesByName = for {
     name <- Parameters[String]

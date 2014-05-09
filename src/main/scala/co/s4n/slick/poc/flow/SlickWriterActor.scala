@@ -11,7 +11,7 @@ class SlickWriterActor extends Actor {
   import context.dispatcher
   
   def receive = {
-    case TimedMessage(SuppliersUpdateStreetByNameRequest(name: String, street: String), startTime)  =>
+    case TimedMessage(SuppliersUpdateStreetByNameRequest(name, street), startTime)  =>
 //      println("writer actor recived update")
      val originalSender = sender
      Future { 

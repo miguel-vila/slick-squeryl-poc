@@ -21,7 +21,8 @@ class SquerylWriterActor extends Actor {
      Future { 
        try {
     	   supplierDAO.updateStreetByName(name, street)
-    	   originalSender ! UpdateCompleted(startTime)         
+    	   originalSender ! UpdateCompleted(startTime)    
+    	   println("SquerylWriterActor update completed!!! : "+street)
        } catch {
          case staleExc : StaleUpdateException =>
            staleExceptions = staleExceptions + 1

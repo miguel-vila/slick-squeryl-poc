@@ -9,11 +9,13 @@ class SuppliersDAO extends DAO {
   val suppliers = Tables.suppliers
   
   def updateStreetByName(name: String, street: String) = {
+    createSession()
     transaction { 
       update(suppliers) {
         s => where(s.name === name) set(s.street := street)
       }
     }
+    Session.currentSession.close
   }
   
 }

@@ -5,16 +5,18 @@ import slick.driver.PostgresDriver.backend.{ Session , DatabaseDef }
 import scala.slick.lifted.TableQuery
 import co.s4n.slick.poc.persistence.slick.Tables.Suppliers
 
-class SuppliersDAO(database: DatabaseDef, suppliers: TableQuery[Suppliers]) extends DAO(database) {
+class SuppliersDAO(suppliers: TableQuery[Suppliers]) extends DAO() {
 
-  def updateStreetByName(name: String, street: String) = database.withTransaction {
+  def updateStreetByName(name: String, street: String) = defaultDB.withTransaction {
     implicit session =>
-      if(street == "carrera 1"){
-        	  println("ME DORMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII <<ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
-            Thread.sleep(60000)
-          }
 	    val q = for( supplier <- suppliers if supplier.name === name) yield supplier.street
 	    q.update(street)
+	    if(street == "carrera 1")
+	    {
+	    	println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
+	    	Thread.sleep(60000)
+	    	println("DESPERTAAAAAAAAAAANDO")
+	    }
   }
   
 }

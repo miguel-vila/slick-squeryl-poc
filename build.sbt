@@ -28,5 +28,6 @@ libraryDependencies ++= Seq(
     "com.typesafe.akka"     %% "akka-testkit"         % akkaVersion,
     "com.typesafe.slick" %% "slick" % "2.0.1",
     "postgresql" % "postgresql" % "9.1-901.jdbc4",
-    "org.squeryl" %% "squeryl" % "0.9.5-6", postgresDriver
+    "org.squeryl" %% "squeryl" % "0.9.5-6", postgresDriver,
+    "c3p0" % "c3p0" % "0.9.1.2", postgresDriver
 )
